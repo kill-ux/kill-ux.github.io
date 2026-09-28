@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MUSTAPHA BOUTOUB — Systems &amp; Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf9f7;
+    --surface:#ffffff;
+    --text:#1c2024;
+    --muted:#6b7078;
+    --accent:#1f5a52;
+    --accent-soft:#e8efed;
+    --line:#e3e1dc;
+    color-scheme: light;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#15171a;
+      --surface:#1b1e22;
+      --text:#e8e6e1;
+      --muted:#8b9098;
+      --accent:#5fb3a3;
+      --accent-soft:#1e2b28;
+      --line:#2b2e33;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#15171a;
+    --surface:#1b1e22;
+    --text:#e8e6e1;
+    --muted:#8b9098;
+    --accent:#5fb3a3;
+    --accent-soft:#1e2b28;
+    --line:#2b2e33;
+  }
+  *{box-sizing:inherit}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:88px 32px 110px;
+  }
+  @media (max-width:600px){
+    .wrap{padding:56px 20px 80px;}
+    body{font-size:15px;}
+  }
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    padding-bottom:44px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:52px;
+    opacity:0;
+    transform:translateY(6px);
+  }
+  header.in{
+    opacity:1;
+    transform:none;
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .id h1{
+    font-size:26px;
+    font-weight:700;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .id p{
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+  }
+  .focus{
+    text-align:right;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+  }
+  @media (max-width:560px){
+    header{flex-direction:column;}
+    .focus{text-align:left;}
+  }
+
+  .lede{
+    max-width:58ch;
+    font-size:17.5px;
+    margin:0 0 60px;
+    color:var(--text);
+  }
+  .lede strong{font-weight:600;}
+
+  section{margin-top:60px;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:26px;
+  }
+  h2{
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--muted);
+    font-weight:600;
+    margin:0;
+    text-transform:uppercase;
+  }
+  .count{
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .entry{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:20px 28px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .entry:last-child{padding-bottom:0;}
+  @media (max-width:640px){
+    .entry{grid-template-columns:1fr;gap:8px;}
+  }
+
+  .entry-meta{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .entry-name{
+    font-weight:600;
+    font-size:16px;
+    color:var(--text);
+  }
+  .entry-status{
+    font-size:12px;
+    color:var(--muted);
+  }
+  .entry-status.active{color:var(--accent);}
+  .entry-status.active::before{
+    content:"";
+    display:inline-block;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    margin-right:6px;
+    vertical-align:middle;
+  }
+
+  .entry-desc{
+    margin:0 0 12px;
+    max-width:56ch;
+    color:var(--text);
+  }
+  .entry-stack{
+    color:var(--muted);
+    font-size:12.5px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 10px;
+  }
+  .entry-stack span{
+    padding:2px 8px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-radius:3px;
+  }
+
+  .stack-cols{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+    border-top:1px solid var(--line);
+    padding-top:26px;
+  }
+  @media (max-width:640px){
+    .stack-cols{grid-template-columns:repeat(2,1fr);}
+  }
+  .stack-cols h3{
+    font-size:11px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    margin:0 0 10px;
+  }
+  .stack-cols ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    color:var(--text);
+    font-size:14.5px;
+    line-height:1.9;
+  }
+
+  .contact-grid{
+    border-top:1px solid var(--line);
+    padding-top:26px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .contact-grid a{
+    color:var(--text);
+    text-decoration:none;
+    font-weight:500;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-grid a:hover, .contact-grid a:focus-visible{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+  .contact-grid .k{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:6px;
+  }
+
+  footer{
+    margin-top:70px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:12.5px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    header{opacity:1 !important; transform:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header id="hdr">
+    <div class="id">
+      <h1>MUSTAPHA BOUTOUB</h1>
+      <p>DEVOPS &amp; Cybersecurity — Engineer</p>
+    </div>
+    <div class="focus mono">
+      cloud · networking<br>
+      systems programming
+    </div>
+  </header>
+
+  <p class="lede"><strong>I learn by building the full stack from the bottom up</strong> — from a bootloader written in raw assembly, through infrastructure and CI/CD, to the applications that run on top of it.</p>
+
+  <section>
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="count mono">7</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-name">kernel-from-scratch</span>
+        <span class="entry-status active">In progress</span>
+      </div>
+      <div>
+        <p class="entry-desc">A Linux-like kernel built up in stages: a real-mode bootloader in NASM, a hand-written switch into 32-bit protected mode (GDT, A20 line), and a kernel written in Rust — the full chain confirmed booting in QEMU.</p>
+        <div class="entry-stack mono"><span>NASM</span><span>x86 Assembly</span><span>Rust (no_std)</span><span>QEMU</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-name">Code-Keeper</span>
+        <span class="entry-status">Shipped</span>
+      </div>
+      <div>
+        <p class="entry-desc">A full CI/CD pipeline for a microservices application: build, test, scan, and containerize per service, with GitLab Runners provisioned by Ansible and staging/production environments managed with Terragrunt.</p>
+        <div class="entry-stack mono"><span>GitLab CI</span><span>Terraform</span><span>Terragrunt</span><span>Ansible</span><span>Docker</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-name">cloud-design</span>
+        <span class="entry-status">Shipped</span>
+      </div>
+      <div>
+        <p class="entry-desc">AWS infrastructure for a microservices architecture — API gateway, two applications, RabbitMQ, and self-hosted Postgres — provisioned as modular Terraform and run on ECS with an EC2 Auto Scaling capacity provider.</p>
+        <div class="entry-stack mono"><span>Terraform</span><span>AWS ECS</span><span>VPC</span><span>RabbitMQ</span><span>PostgreSQL</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-name">Let's Play API</span>
+        <span class="entry-status">Shipped</span>
+      </div>
+      <div>
+        <p class="entry-desc">A Spring Boot and MongoDB REST API with JWT authentication and role-based access control, plus Redis-backed token revocation so a deleted or changed user's tokens are invalidated immediately.</p>
+        <div class="entry-stack mono"><span>Java</span><span>Spring Boot</span><span>MongoDB</span><span>Redis</span><span>JWT</span></div>
+      </div>
+    </div>
+
+
+  <section>
+    <div class="section-head">
+      <h2>Stack</h2>
+    </div>
+    <div class="stack-cols">
+      <div>
+        <h3>Languages</h3>
+        <ul><li>Rust</li><li>Java</li><li>TypeScript</li><li>JavaScript</li></ul>
+      </div>
+      <div>
+        <h3>Infrastructure</h3>
+        <ul><li>Terraform</li><li>Docker</li><li>AWS</li><li>Ansible</li></ul>
+      </div>
+      <div>
+        <h3>Data</h3>
+        <ul><li>PostgreSQL</li><li>MongoDB</li><li>Redis</li></ul>
+      </div>
+      <div>
+        <h3>Environment</h3>
+        <ul><li>Linux</li><li>VirtualBox</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div><span class="k">Email</span><a href="mailto:mustaphaboutoubdev@gmail.com">mustaphaboutoubdev@gmail.com</a></div>
+      <div><span class="k">GitHub</span><a href="https://github.com/kill-ux">github.com/kill-ux</a></div>
+      <div><span class="k">LinkedIn</span><a href="https://linkedin.com/in/muboutoub">linkedin.com/in/muboutoub</a></div>
+    </div>
+  </section>
+
+  <footer>Built from the ground up, one layer at a time.</footer>
+</div>
+
+<script>
+(function(){
+  var hdr = document.getElementById('hdr');
+  requestAnimationFrame(function(){ hdr.classList.add('in'); });
+})();
+</script>
+</body>
+</html>
