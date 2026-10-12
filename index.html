@@ -1,377 +1,846 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MUSTAPHA BOUTOUB — Systems &amp; Cybersecurity</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#faf9f7;
-    --surface:#ffffff;
-    --text:#1c2024;
-    --muted:#6b7078;
-    --accent:#1f5a52;
-    --accent-soft:#e8efed;
-    --line:#e3e1dc;
-    color-scheme: light;
-    box-sizing:border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg:#15171a;
-      --surface:#1b1e22;
-      --text:#e8e6e1;
-      --muted:#8b9098;
-      --accent:#5fb3a3;
-      --accent-soft:#1e2b28;
-      --line:#2b2e33;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mustapha Boutoub — Full-Stack & DevOps Engineer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b0a;
+      --fg: #f1f1ec;
+      --mut: #8b8d86;
+      --line: #22251f;
+      --card: #111310;
+      --acc: #4ade80;
+      --accfg: #04130a;
+      --r: 0
     }
-  }
-  :root[data-theme="dark"]{
-    --bg:#15171a;
-    --surface:#1b1e22;
-    --text:#e8e6e1;
-    --muted:#8b9098;
-    --accent:#5fb3a3;
-    --accent-soft:#1e2b28;
-    --line:#2b2e33;
-  }
-  *{box-sizing:inherit}
-  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
-  html,body{height:100%;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .mono{
-    font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
 
-  .wrap{
-    max-width:760px;
-    margin:0 auto;
-    padding:88px 32px 110px;
-  }
-  @media (max-width:600px){
-    .wrap{padding:56px 20px 80px;}
-    body{font-size:15px;}
-  }
+    [data-theme=light] {
+      --bg: #f6f5f0;
+      --fg: #111310;
+      --mut: #5f625a;
+      --line: #d9d8cf;
+      --card: #ecebe3;
+      --acc: #15803d;
+      --accfg: #fff
+    }
 
-  header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:24px;
-    padding-bottom:44px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:52px;
-    opacity:0;
-    transform:translateY(6px);
-  }
-  header.in{
-    opacity:1;
-    transform:none;
-    transition:opacity .5s ease, transform .5s ease;
-  }
-  .id h1{
-    font-size:26px;
-    font-weight:700;
-    margin:0 0 6px;
-    letter-spacing:-0.01em;
-  }
-  .id p{
-    margin:0;
-    color:var(--muted);
-    font-size:15px;
-  }
-  .focus{
-    text-align:right;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.7;
-  }
-  @media (max-width:560px){
-    header{flex-direction:column;}
-    .focus{text-align:left;}
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-  .lede{
-    max-width:58ch;
-    font-size:17.5px;
-    margin:0 0 60px;
-    color:var(--text);
-  }
-  .lede strong{font-weight:600;}
+    html {
+      scroll-behavior: smooth
+    }
 
-  section{margin-top:60px;}
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    margin-bottom:26px;
-  }
-  h2{
-    font-size:13px;
-    letter-spacing:.04em;
-    color:var(--muted);
-    font-weight:600;
-    margin:0;
-    text-transform:uppercase;
-  }
-  .count{
-    color:var(--muted);
-    font-size:13px;
-  }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 'Inter Tight', system-ui, sans-serif;
+      transition: background .3s, color .3s
+    }
 
-  .entry{
-    display:grid;
-    grid-template-columns:180px 1fr;
-    gap:20px 28px;
-    padding:26px 0;
-    border-top:1px solid var(--line);
-  }
-  .entry:last-child{padding-bottom:0;}
-  @media (max-width:640px){
-    .entry{grid-template-columns:1fr;gap:8px;}
-  }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mut)
+    }
 
-  .entry-meta{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-  .entry-name{
-    font-weight:600;
-    font-size:16px;
-    color:var(--text);
-  }
-  .entry-status{
-    font-size:12px;
-    color:var(--muted);
-  }
-  .entry-status.active{color:var(--accent);}
-  .entry-status.active::before{
-    content:"";
-    display:inline-block;
-    width:6px;height:6px;
-    border-radius:50%;
-    background:var(--accent);
-    margin-right:6px;
-    vertical-align:middle;
-  }
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
 
-  .entry-desc{
-    margin:0 0 12px;
-    max-width:56ch;
-    color:var(--text);
-  }
-  .entry-stack{
-    color:var(--muted);
-    font-size:12.5px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px 10px;
-  }
-  .entry-stack span{
-    padding:2px 8px;
-    background:var(--accent-soft);
-    color:var(--accent);
-    border-radius:3px;
-  }
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-  .stack-cols{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:28px;
-    border-top:1px solid var(--line);
-    padding-top:26px;
-  }
-  @media (max-width:640px){
-    .stack-cols{grid-template-columns:repeat(2,1fr);}
-  }
-  .stack-cols h3{
-    font-size:11px;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    color:var(--muted);
-    font-weight:600;
-    margin:0 0 10px;
-  }
-  .stack-cols ul{
-    list-style:none;
-    margin:0;
-    padding:0;
-    color:var(--text);
-    font-size:14.5px;
-    line-height:1.9;
-  }
+    #bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--acc);
+      z-index: 99
+    }
 
-  .contact-grid{
-    border-top:1px solid var(--line);
-    padding-top:26px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:32px;
-  }
-  .contact-grid a{
-    color:var(--text);
-    text-decoration:none;
-    font-weight:500;
-    border-bottom:1px solid var(--line);
-    padding-bottom:2px;
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .contact-grid a:hover, .contact-grid a:focus-visible{
-    color:var(--accent);
-    border-color:var(--accent);
-  }
-  .contact-grid .k{
-    display:block;
-    color:var(--muted);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:6px;
-  }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line)
+    }
 
-  footer{
-    margin-top:70px;
-    padding-top:22px;
-    border-top:1px solid var(--line);
-    color:var(--muted);
-    font-size:12.5px;
-  }
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px
+    }
 
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:2px;
-  }
+    nav b {
+      font-weight: 700
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    header{opacity:1 !important; transform:none !important; transition:none !important;}
-  }
-</style>
+    .links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--mut)
+    }
+
+    .links a:hover {
+      color: var(--fg)
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      font-weight: 500;
+      font-size: 15px;
+      border: 1px solid var(--fg);
+      cursor: pointer;
+      background: none;
+      color: var(--fg);
+      transition: .2s
+    }
+
+    .btn.p {
+      background: var(--acc);
+      color: var(--accfg);
+      border-color: var(--acc)
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -8px var(--acc)
+    }
+
+    .tog {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: none;
+      color: var(--fg);
+      cursor: pointer
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .badge i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acc);
+      box-shadow: 0 0 10px var(--acc);
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .35
+      }
+    }
+
+    h1 {
+      font-size: clamp(52px, 9vw, 124px);
+      line-height: .92;
+      letter-spacing: -.05em;
+      font-weight: 800;
+      margin: 22px 0 28px
+    }
+
+    .role {
+      font-size: 24px;
+      font-weight: 500
+    }
+
+    .role span {
+      background: var(--acc);
+      color: var(--accfg);
+      padding: 0 10px
+    }
+
+    .lead {
+      max-width: 520px;
+      color: var(--mut);
+      margin: 18px 0 32px
+    }
+
+    .lead b {
+      color: var(--fg)
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .term {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 0
+    }
+
+    .term .top {
+      display: flex;
+      gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .term .top i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--line)
+    }
+
+    .term pre {
+      padding: 22px;
+      font: 13px/2 'JetBrains Mono', monospace;
+      color: var(--mut);
+      white-space: pre-wrap
+    }
+
+    .term pre em {
+      color: var(--acc);
+      font-style: normal
+    }
+
+    .term pre b {
+      color: var(--fg);
+      font-weight: 400
+    }
+
+    .cur {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--acc);
+      vertical-align: middle;
+      animation: pulse 1s infinite
+    }
+
+    .chip {
+      position: absolute;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font: 11px 'JetBrains Mono', monospace;
+      animation: fl 5s ease-in-out infinite
+    }
+
+    .chip:before {
+      content: "● ";
+      color: var(--acc)
+    }
+
+    @keyframes fl {
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    .mq {
+      border-block: 1px solid var(--line);
+      overflow: hidden;
+      padding: 16px 0
+    }
+
+    .mq div {
+      display: flex;
+      gap: 40px;
+      width: max-content;
+      animation: mq 30s linear infinite
+    }
+
+    .mq span {
+      font: 12px 'JetBrains Mono', monospace;
+      color: var(--mut)
+    }
+
+    .mq span:after {
+      content: " ●";
+      color: var(--acc);
+      margin-left: 40px
+    }
+
+    @keyframes mq {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .stats div {
+      padding: 34px 24px 34px 0
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 48px;
+      letter-spacing: -.04em;
+      line-height: 1
+    }
+
+    .stats small {
+      color: var(--mut)
+    }
+
+    section {
+      padding: 110px 0 0
+    }
+
+    .sh {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 48px
+    }
+
+    h2 {
+      font-size: clamp(40px, 6vw, 72px);
+      letter-spacing: -.045em;
+      line-height: 1;
+      font-weight: 800
+    }
+
+    .quote {
+      border-left: 3px solid var(--acc);
+      padding-left: 28px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      font-weight: 800;
+      margin-bottom: 56px
+    }
+
+    .quote span {
+      color: var(--mut)
+    }
+
+    .grid {
+      display: grid;
+      border: 1px solid var(--line)
+    }
+
+    .g2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .cell {
+      padding: 32px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 0 -1px -1px 0;
+      transition: .25s;
+      position: relative
+    }
+
+    .cell:hover {
+      background: var(--card);
+      box-shadow: inset 0 2px 0 var(--acc)
+    }
+
+    .cell h3 {
+      font-size: 24px;
+      letter-spacing: -.02em;
+      margin: 10px 0 12px;
+      line-height: 1.15
+    }
+
+    .cell p {
+      color: var(--mut);
+      font-size: 15px
+    }
+
+    .cell ul {
+      list-style: none;
+      margin-top: 18px;
+      font: 12px/2 'JetBrains Mono', monospace;
+      color: var(--mut)
+    }
+
+    .cell li:before {
+      content: "— ";
+      color: var(--acc)
+    }
+
+    .num {
+      font: 500 40px 'Inter Tight';
+      color: var(--acc);
+      letter-spacing: -.04em
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px
+    }
+
+    .tags span {
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 3px 12px;
+      font: 11px 'JetBrains Mono', monospace;
+      color: var(--mut)
+    }
+
+    .proj {
+      padding: 44px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 48px
+    }
+
+    .proj h3 {
+      font-size: clamp(34px, 5vw, 56px);
+      letter-spacing: -.045em;
+      line-height: 1
+    }
+
+    .proj h3 sup {
+      font: 12px 'JetBrains Mono';
+      color: var(--acc);
+      margin-right: 10px
+    }
+
+    .proj dl {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px 20px
+    }
+
+    .proj dt {
+      font: 11px 'JetBrains Mono';
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--acc);
+      padding-top: 4px
+    }
+
+    .proj dd {
+      color: var(--mut)
+    }
+
+    .proj dd b {
+      color: var(--fg);
+      font-weight: 500
+    }
+
+    .steps .cell small {
+      font: 11px 'JetBrains Mono';
+      color: var(--acc)
+    }
+
+    .contact {
+      text-align: left;
+      padding-bottom: 110px
+    }
+
+    .contact h2 {
+      margin-bottom: 24px
+    }
+
+    .contact p {
+      color: var(--mut);
+      max-width: 520px;
+      margin-bottom: 32px
+    }
+
+    .cl {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: .7s
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:860px) {
+
+      .hero,
+      .proj {
+        grid-template-columns: 1fr
+      }
+
+      .g2,
+      .g3,
+      .stats {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .links a:not(.btn) {
+        display: none
+      }
+
+      .sh {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .term {
+        margin-top: 30px
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .g2,
+      .g3 {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="wrap">
-
-  <header id="hdr">
-    <div class="id">
-      <h1>MUSTAPHA BOUTOUB</h1>
-      <p>DEVOPS &amp; Cybersecurity — Engineer</p>
-    </div>
-    <div class="focus mono">
-      cloud · networking<br>
-      systems programming
-    </div>
-  </header>
-
-  <p class="lede"><strong>I learn by building the full stack from the bottom up</strong> — from a bootloader written in raw assembly, through infrastructure and CI/CD, to the applications that run on top of it.</p>
-
-  <section>
-    <div class="section-head">
-      <h2>Projects</h2>
-      <span class="count mono">7</span>
-    </div>
-
-    <div class="entry">
-      <div class="entry-meta">
-        <span class="entry-name">kernel-from-scratch</span>
-        <span class="entry-status active">In progress</span>
+  <div id="bar"></div>
+  <nav>
+    <div class="wrap">
+      <b>Mustapha Boutoub</b>
+      <div class="links">
+        <a href="#why">Why me</a><a href="#work">Work</a><a href="#stack">Stack</a><a href="#process">Process</a>
+        <a class="btn p" href="#contact" style="padding:10px 18px">Hire me</a>
+        <button class="tog" id="tog" aria-label="theme">◐</button>
       </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="hero">
       <div>
-        <p class="entry-desc">A Linux-like kernel built up in stages: a real-mode bootloader in NASM, a hand-written switch into 32-bit protected mode (GDT, A20 line), and a kernel written in Rust — the full chain confirmed booting in QEMU.</p>
-        <div class="entry-stack mono"><span>NASM</span><span>x86 Assembly</span><span>Rust (no_std)</span><span>QEMU</span></div>
+        <span class="badge mono"><i></i> Open to work · Remote &amp; Onsite &amp; Hybrid</span>
+        <h1>Mustapha<br>Boutoub</h1>
+        <p class="role">Full-Stack &amp; <span>DevOps Engineer</span></p>
+        <p class="lead">I build backends, ship them through real pipelines, and I know what's happening
+          <b>underneath</b>, from containers down to a kernel I wrote myself. Based in Oujda, Morocco.
+        </p>
+        <div class="cta"><a class="btn p" href="#contact">Get in touch →</a><a class="btn" href="#work">See
+            selected work</a></div>
+      </div>
+      <div class="term">
+        <div class="top"><i></i><i></i><i></i></div>
+        <pre><em>$</em> whoami
+<b>mustapha_boutoub</b>
+<em>$</em> cat stack.txt
+<b>java · spring · rust · typescript</b>
+<b>docker · terraform · ansible · aws</b>
+<em>$</em> cat status.txt
+<b>zone01 oujda · 2024–2026</b>
+<em>$</em> <span class="cur"></span></pre>
+        <span class="chip" style="top:-14px;left:-20px">Spring Boot</span>
+        <span class="chip" style="top:42%;right:-18px;animation-delay:1s">Terraform</span>
+        <span class="chip" style="bottom:-14px;left:24px;animation-delay:2s">Rust</span>
       </div>
     </div>
+  </main>
 
-    <div class="entry">
-      <div class="entry-meta">
-        <span class="entry-name">Code-Keeper</span>
-        <span class="entry-status">Shipped</span>
-      </div>
-      <div>
-        <p class="entry-desc">A full CI/CD pipeline for a microservices application: build, test, scan, and containerize per service, with GitLab Runners provisioned by Ansible and staging/production environments managed with Terragrunt.</p>
-        <div class="entry-stack mono"><span>GitLab CI</span><span>Terraform</span><span>Terragrunt</span><span>Ansible</span><span>Docker</span></div>
-      </div>
+  <div class="mq">
+    <div id="mq"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div><strong>2024–26</strong><small>Zone 01 full-stack program</small></div>
+      <div><strong>6</strong><small>Featured builds below</small></div>
+      <div><strong>3</strong><small>Layers: app · infra · kernel</small></div>
+      <div><strong>100%</strong><small>Hands-on, project-driven</small></div>
     </div>
 
-    <div class="entry">
-      <div class="entry-meta">
-        <span class="entry-name">cloud-design</span>
-        <span class="entry-status">Shipped</span>
+    <section id="why" class="rv">
+      <div class="sh">
+        <h2>Why hire me</h2><span class="mono">The short version</span>
       </div>
-      <div>
-        <p class="entry-desc">AWS infrastructure for a microservices architecture — API gateway, two applications, RabbitMQ, and self-hosted Postgres — provisioned as modular Terraform and run on ECS with an EC2 Auto Scaling capacity provider.</p>
-        <div class="entry-stack mono"><span>Terraform</span><span>AWS ECS</span><span>VPC</span><span>RabbitMQ</span><span>PostgreSQL</span></div>
+      <div class="quote">I understand the stack from the bootloader to the load balancer. <span>That's what makes
+          me fast at debugging it.</span></div>
+      <div class="grid g2">
+        <div class="cell">
+          <div class="num">01</div>
+          <h3>I learn by building the whole thing</h3>
+          <p>Microservices, a CI/CD pipeline, a shell, an HTTP server, a kernel. I don't stop at the
+            framework; I build the layer underneath it so I know why it behaves the way it does.</p>
+        </div>
+        <div class="cell">
+          <div class="num">02</div>
+          <h3>Application code and infrastructure, together</h3>
+          <p>I write the Spring Boot service and the Terraform that runs it. Fewer hand-offs, fewer "works on
+            my machine" surprises, faster delivery.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="entry">
-      <div class="entry-meta">
-        <span class="entry-name">Let's Play API</span>
-        <span class="entry-status">Shipped</span>
+    <section id="stack" class="rv">
+      <div class="sh">
+        <h2>Three things I do</h2><span class="mono">What I do</span>
       </div>
-      <div>
-        <p class="entry-desc">A Spring Boot and MongoDB REST API with JWT authentication and role-based access control, plus Redis-backed token revocation so a deleted or changed user's tokens are invalidated immediately.</p>
-        <div class="entry-stack mono"><span>Java</span><span>Spring Boot</span><span>MongoDB</span><span>Redis</span><span>JWT</span></div>
+      <div class="grid g3">
+        <div class="cell"><span class="mono">01</span>
+          <h3>Backend &amp; APIs</h3>
+          <p>Secure, well-structured services with auth and access control done properly.</p>
+          <ul>
+            <li>Spring Boot · REST</li>
+            <li>JWT, RBAC, token revocation</li>
+            <li>MongoDB · Redis</li>
+          </ul>
+        </div>
+        <div class="cell"><span class="mono">02</span>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Infrastructure as code and pipelines that make deployments boring.</p>
+          <ul>
+            <li>Terraform · AWS ECS Fargate</li>
+            <li>GitLab CI · Ansible</li>
+            <li>Docker · image scanning</li>
+          </ul>
+        </div>
+        <div class="cell"><span class="mono">03</span>
+          <h3>Systems &amp; low-level</h3>
+          <p>Rust and assembly work that keeps me honest about how computers actually run code.</p>
+          <ul>
+            <li>Rust · shell · HTTP server</li>
+            <li>x86 bootloader in NASM</li>
+            <li>QEMU testing</li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
 
-
-  <section>
-    <div class="section-head">
-      <h2>Stack</h2>
-    </div>
-    <div class="stack-cols">
-      <div>
-        <h3>Languages</h3>
-        <ul><li>Rust</li><li>Java</li><li>TypeScript</li><li>JavaScript</li></ul>
+    <section id="work" class="rv">
+      <div class="sh">
+        <h2>Selected work</h2><span class="mono">Six builds · 2024–2026</span>
       </div>
-      <div>
-        <h3>Infrastructure</h3>
-        <ul><li>Terraform</li><li>Docker</li><li>AWS</li><li>Ansible</li></ul>
-      </div>
-      <div>
-        <h3>Data</h3>
-        <ul><li>PostgreSQL</li><li>MongoDB</li><li>Redis</li></ul>
-      </div>
-      <div>
-        <h3>Environment</h3>
-        <ul><li>Linux</li><li>VirtualBox</li></ul>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="section-head">
-      <h2>Contact</h2>
-    </div>
-    <div class="contact-grid">
-      <div><span class="k">Email</span><a href="mailto:mustaphaboutoubdev@gmail.com">mustaphaboutoubdev@gmail.com</a></div>
-      <div><span class="k">GitHub</span><a href="https://github.com/kill-ux">github.com/kill-ux</a></div>
-      <div><span class="k">LinkedIn</span><a href="https://linkedin.com/in/muboutoub">linkedin.com/in/muboutoub</a></div>
-    </div>
-  </section>
+      <article class="proj">
+        <div>
+          <h3><sup>01</sup>Buy-01</h3>
+          <div class="tags"><span>Spring
+              Boot</span><span>Angular</span><span>MongoDB</span><span>MinIO</span><span>Eureka</span>
+          </div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>E-commerce platform on a microservices architecture (gateway, discovery, user, product, media).
+            I own the <b>Product and Media services</b>.</dd>
+          <dt>Decision</dt>
+          <dd><b>JWT is validated once, at the gateway.</b> Services trust the identity headers it forwards
+            instead of re-checking tokens. Product and Media talk over plain HTTP through Eureka with Spring
+            HTTP interface clients, with no Kafka or gRPC where a simple call is enough.</dd>
+          <dt>Result</dt>
+          <dd>Product Service is built and working. Media Service stores images in <b>S3-compatible object
+              storage (MinIO)</b> and checks product ownership on upload. Product fetches image URLs from
+            Media in one batch request per list instead of duplicating them in its own database.</dd>
+        </dl>
+      </article>
 
-  <footer>Built from the ground up, one layer at a time.</footer>
-</div>
+      <article class="proj">
+        <div>
+          <h3><sup>02</sup>Code-Keeper</h3>
+          <div class="tags"><span>GitLab
+              CI</span><span>Ansible</span><span>Terraform</span><span>Terragrunt</span><span>Docker</span>
+          </div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>Full CI/CD for a microservices app, with <b>GitLab and runners deployed by an Ansible
+              playbook</b> and staging and production environments provisioned by Terraform on top of my
+            AWS infrastructure project.</dd>
+          <dt>Decision</dt>
+          <dd>Each service has its own repo and pipeline, and infrastructure lives in a <b>separate infra
+              repo</b> (Terragrunt + Terraform), so app changes and infra changes ship independently.
+            Docker image scanning runs in every pipeline.</dd>
+          <dt>Result</dt>
+          <dd>Three app pipelines running CI (build, test, scan, containerize) and CD (deploy to staging,
+            manual approval, deploy to production), plus one infra repo managing both environments.</dd>
+        </dl>
+      </article>
 
-<script>
-(function(){
-  var hdr = document.getElementById('hdr');
-  requestAnimationFrame(function(){ hdr.classList.add('in'); });
-})();
-</script>
+      <article class="proj">
+        <div>
+          <h3><sup>03</sup>Cloud Design</h3>
+          <div class="tags"><span>AWS</span><span>ECS</span><span>Terraform</span><span>PostgreSQL</span>
+          </div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>Microservices infrastructure on <b>AWS ECS</b>, fully described in Terraform: API gateway,
+            inventory and billing apps, RabbitMQ, and two PostgreSQL databases.</dd>
+          <dt>Decision</dt>
+          <dd>ECS on an <b>EC2 Auto Scaling Group capacity provider</b> so the self-hosted databases keep data
+            on persistent EBS volumes. Images are pulled from ECR through <b>VPC endpoints instead of a NAT
+              Gateway</b> to cut cost.</dd>
+          <dt>Result</dt>
+          <dd>Modular Terraform (VPC, security groups, ALB, ECS, S3 remote state) that rebuilds the whole
+            environment from a single apply.</dd>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div>
+          <h3><sup>04</sup>Let's Play API</h3>
+          <div class="tags"><span>Spring Boot</span><span>MongoDB</span><span>Redis</span><span>JWT</span>
+          </div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>REST CRUD API for users and products with <b>JWT auth and role-based access</b>: admins manage
+            everything, regular users manage only their own products.</dd>
+          <dt>Decision</dt>
+          <dd>Stateless JWTs plus a <b>Redis blocklist</b>, so deleting a user or changing a role or password
+            invalidates their tokens immediately instead of at natural expiry.</dd>
+          <dt>Result</dt>
+          <dd>Full Postman regression suite passing, BCrypt password hashing, global exception handling, and
+            all secrets kept in environment variables.</dd>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div>
+          <h3><sup>05</sup>Kernel from scratch</h3>
+          <div class="tags"><span>NASM</span><span>x86</span><span>Rust</span><span>QEMU</span></div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>A Linux-like kernel built in stages: a <b>NASM bootloader</b> in real mode, a second stage, then
+            the switch to 32-bit protected mode (GDT, A20, CR0).</dd>
+          <dt>Decision</dt>
+          <dd>Start from bare metal so nothing hides behind a library, then write the kernel itself in
+            <b>no_std Rust</b> with a custom target and linker script.
+          </dd>
+          <dt>Result</dt>
+          <dd>The full chain boots under QEMU: boot sector, stage 2, protected mode, then the Rust kernel
+            writing to VGA memory.</dd>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div>
+          <h3><sup>06</sup>Orchestrator</h3>
+          <div class="tags">
+            <span>Kubernetes</span><span>k3s</span><span>Docker</span><span>RabbitMQ</span><span>PostgreSQL</span>
+          </div>
+        </div>
+        <dl>
+          <dt>What</dt>
+          <dd>A <b>k3s cluster</b> running a microservices app (API gateway, billing, inventory, RabbitMQ, two
+            PostgreSQL databases) with every component deployed and managed through Kubernetes manifests.
+          </dd>
+          <dt>Decision</dt>
+          <dd>I used <b>k3s</b> for a lightweight real cluster, and moved from Docker Compose to Kubernetes
+            primitives: Deployments, Services, StatefulSets for the databases, and secrets and volumes for
+            configuration and persistence. Only the gateway is exposed externally.</dd>
+          <dt>Result</dt>
+          <dd>The whole stack comes up from manifests, and the control plane reschedules failed pods
+            automatically.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <section id="process" class="rv">
+      <div class="sh">
+        <h2>How we'd work</h2><span class="mono">Process</span>
+      </div>
+      <div class="grid g3 steps" style="grid-template-columns:repeat(4,1fr)">
+        <div class="cell"><small>01</small>
+          <h3>Intro call</h3>
+          <p>You describe the problem; I tell you honestly if I'm the right fit.</p>
+        </div>
+        <div class="cell"><small>02</small>
+          <h3>Short plan</h3>
+          <p>Approach, risks, and a timeline you can hold me to.</p>
+        </div>
+        <div class="cell"><small>03</small>
+          <h3>Weekly slices</h3>
+          <p>Something running and deployed every week.</p>
+        </div>
+        <div class="cell"><small>04</small>
+          <h3>Handover</h3>
+          <p>Docs, tests, and a walkthrough for the next engineer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact rv">
+      <span class="mono">Get in touch</span>
+      <h2 style="margin-top:14px">Tell me what<br>you're building.</h2>
+      <p>Full-time roles or projects with a real deadline. I reply within a day.</p>
+      <a class="btn p" href="mailto:mustaphaboutoubdev@gmail.com">mustaphaboutoubdev@gmail.com →</a>
+      <div class="cl"><a class="btn" href="https://github.com/kill-ux">GitHub</a><a class="btn"
+          href="https://linkedin.com/in/muboutoub">LinkedIn</a></div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap mono">© 2026 Mustapha Boutoub · Oujda, Morocco</div>
+  </footer>
+
+  <script>
+    const stack = "Java,Spring Boot,Rust,TypeScript,Angular,Docker,Terraform,Ansible,AWS,GitLab CI,MongoDB,Redis,PostgreSQL,NASM,Linux".split(",");
+    document.getElementById("mq").innerHTML = [...stack, ...stack].map(s => `<span>${s}</span>`).join("");
+    const root = document.documentElement, saved = localStorage.getItem("theme");
+    if (saved) root.dataset.theme = saved;
+    document.getElementById("tog").onclick = () => { const t = root.dataset.theme === "dark" ? "light" : "dark"; root.dataset.theme = t; localStorage.setItem("theme", t) };
+    addEventListener("scroll", () => { const h = document.documentElement; document.getElementById("bar").style.width = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100 + "%" });
+    const io = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add("in")), { threshold: .08 });
+    document.querySelectorAll(".rv").forEach(el => io.observe(el));
+  </script>
 </body>
+
 </html>
